@@ -1,32 +1,75 @@
+<style lang="scss">
+  #app {
+    .header {
+      width : 100%;
+      height: 60px;
+      display: flex;
+      position: fixed;
+      top :0;
+      padding: 20px 0px 10px 10px;
+      align-items: center;
+      justify-content: flex-start;
+      background: white;
+
+      .backspace-home {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        .backspace {
+          margin-right: 20px;
+          cursor: pointer;
+        }
+        .home {
+          cursor: pointer;
+        }
+      }
+
+      
+      .header-text{
+        display: inline-block;
+        height: 30px;
+        margin-right: auto;
+        margin-left: auto;
+        padding-right : 80px;
+      }
+    }
+  }
+
+
+  body {
+    padding-top: 80px;
+  }
+</style>
+
+
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="header">
+      <div class="backspace-home">
+        <div class="backspace" @click="goBack">
+          <img src="./assets/icon-backspace.png">
+        </div>
+        <div class="home" @click="goHome">
+          <img src="./assets/icon-home.png">
+        </div>
+      </div>
+
+      <div class="header-text"> 기사 </div>
     </div>
     <router-view/>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+export default {
+  methods : {
+    goBack () {
+      this.$router.go(-1);
+    },
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+    goHome() {
+      this.$router.push('/');
     }
   }
 }
-</style>
+</script>
